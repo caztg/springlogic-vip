@@ -47,6 +47,7 @@ public class PrizeRestController {
                                                                                            Pageable pageable,
                                                                                            PersistentEntityResourceAssembler resourceAssembler) {
 
+
         Page<Prize> all = prizeRepository.findAll(pageable);
         if(userId!=0) {
             Page<Prize> prizesPage = all.map(new PrizesConverter(prizeLogRepository, userId));
@@ -83,7 +84,7 @@ public class PrizeRestController {
 
             if (null != currentUserId) {
                 //处理领取状态
-                PrizeLog tempPrizeLog = prizeLogRepository.findByUserId(currentUserId);
+                PrizeLog tempPrizeLog = prizeLogRepository.findByUserIdAndPrizeId(currentUserId,source.getId());
                 if(tempPrizeLog!=null){
                     if (tempPrizeLog.getPrize().getId()==source.getId()){
                         //说明该奖品 当前用户已经领取了,设置领取对象

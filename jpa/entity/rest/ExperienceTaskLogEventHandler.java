@@ -65,7 +65,7 @@ public class ExperienceTaskLogEventHandler {
                 //experienceTaskLogRepository.delete(experienceTaskLog.getId());
                 throw new BussinessException("你已达到当前任务完成次数");
             }
-            if (exp != null) {
+            if (exp != null&exp.getAmmount()<=9000) {
                 //修改经验值
                 experienceRepository.setAmmountById(exp.getId(), exp.getAmmount() + experienceTaskLog.getExperienceTask().getExperience());
             }
@@ -82,7 +82,8 @@ public class ExperienceTaskLogEventHandler {
 
 
             experienceTaskLog.setPeriodEndTime(date1);
-            if (exp != null) {
+            if (exp != null&exp.getAmmount()<=9000) {
+                //修改经验值
                 experienceRepository.setAmmountById(exp.getId(), exp.getAmmount() + experienceTaskLog.getExperienceTask().getExperience());
             }
         }

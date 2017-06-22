@@ -18,7 +18,8 @@ import org.springframework.data.rest.core.annotation.RestResource;
 public interface PrizeLogRepository extends JpaRepository<PrizeLog,Integer>{
 
     @RestResource(path = "one",rel = "one")
-    PrizeLog findByUserId(@Param("userId")int userId);
+    @Query("select pl from PrizeLog pl where pl.user.id=:userId and pl.prize.id=:prizeId")
+    PrizeLog findByUserIdAndPrizeId(@Param("userId")int userId,@Param("prizeId")int prizeId);
 
     @RestResource(path = "all",rel = "all")
     @Query("select distinct pl from PrizeLog pl where (:nickName IS NULL OR pl.user.nickName  LIKE CONCAT('%',:nickName,'%')) AND (:prizeName IS NULL OR pl.prize.title LIKE CONCAT('%',:prizeName,'%')) AND (:status IS NULL OR pl.status=:status) AND (:levelId IS NULL OR pl.prize.experienceLevel.id=:levelId)")

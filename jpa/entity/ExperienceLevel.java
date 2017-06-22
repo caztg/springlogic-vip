@@ -19,6 +19,9 @@ public class ExperienceLevel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column(name = "experience_end_condition")
+    private int experienceEndCondition;
+
     /*等级条件*/
     @Column(name = "experience_condition")
     private int experienceCondition;

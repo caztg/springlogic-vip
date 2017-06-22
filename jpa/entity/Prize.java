@@ -1,10 +1,13 @@
 package cn.springlogic.vip.jpa.entity;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fitcooker.app.AppDataPreFixSerializer;
+import com.fitcooker.app.serializer.AppDataPreFixSerializer;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Created by admin on 2017/5/3.
@@ -35,5 +38,14 @@ public class Prize {
     @Transient
     private PrizeLog prizeLog;
 
+    @Column(name="create_time")
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createTime;
+
+    @Column(name="update_time")
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateTime;
 
 }

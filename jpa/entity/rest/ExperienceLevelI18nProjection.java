@@ -7,5 +7,6 @@ public interface ExperienceLevelI18nProjection {
     int getId();
     String getName();
     String getLanguage();
+    int getExperienceEndCondition();
     int getExperienceCondition();
 }

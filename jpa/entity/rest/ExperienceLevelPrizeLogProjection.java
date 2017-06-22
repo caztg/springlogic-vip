@@ -10,5 +10,6 @@ import org.springframework.data.rest.core.config.Projection;
 public interface ExperienceLevelPrizeLogProjection {
     int getId();
     String getName();
+    int getExperienceEndCondition();
     int getExperienceCondition();
 }
